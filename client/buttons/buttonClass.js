@@ -1,4 +1,4 @@
-class Button {
+Button = class {
     constructor (settings) {
         this.text = settings.text || '';
         this.icon = settings.icon || '';
@@ -13,3 +13,9 @@ class Button {
     }
 }
 
+ResponsiveButton = class extends Button {
+    constructor(settings) {
+        super(settings);
+        this.classes += ' col-xs-12';
+    }
+}
