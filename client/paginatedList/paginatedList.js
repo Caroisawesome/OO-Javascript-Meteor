@@ -1,17 +1,20 @@
+
 Template.listExample.onCreated(function() {
     const instance = this;
-    const notifications = Notifications.find().fetch()
+    const items = generateItems()
 
     //how do we make this reactive? 
-    instance.list = new PaginatedList(notifications, 10);
+    instance.list = new PaginatedList(items, 10);
 });
 
 Template.listExample.helpers({
-    notifications: function() {
+    listItems: function() {
         return Template.instance().list.getData();
     },
-
-    activePage: function() {
+    getListButtons: function() {
+        return Template.instance().list.getButtonData();
+    },
+    isActive: function() {
         return this === Template.instance().list.getCurrentPage();
     }
 })
@@ -29,3 +32,13 @@ Template.listExample.events({
         instance.list.goToPage(e.currentTarget.value);
     }
 })
+
+const generateItems = (array = []) => {
+    _.times(88, () => {
+        array.push({
+            name: Fake.word(),
+            description: Fake.sentence()
+        })
+    })
+    return array;
+}

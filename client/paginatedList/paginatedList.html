@@ -1,0 +1,13 @@
+<template name="listExample">
+    {{#each listItems}} 
+        <p>{{name}} - {{description}}</p>
+    {{/each}}
+
+    <div class="btn-group" role="group">
+        {{#each getListButtons}}
+            <button class="btn btn-default {{isActive}}">
+                <a data-loqust="load-page-range" data-page="{{pageNumber}}">{{pageNumber}}</a>
+            </button>
+        {{/each}}
+    </div>
+</template>

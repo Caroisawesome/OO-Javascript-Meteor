@@ -1,10 +1,10 @@
 class Button {
     constructor (settings) {
-        this.text: settings.text || '',
-        this.icon: settings.icon || '',
-        this.type: settings.type || '',
-        this.classes: settings.classes || '',
-        this.attributes: settings.attributes
+        this.text = settings.text || '';
+        this.icon = settings.icon || '';
+        this.type = settings.type || '';
+        this.classes = settings.classes || '';
+        this.attributes = settings.attributes;
 
     }
 
