@@ -11,12 +11,16 @@ PaginatedList = class {
         return this.data.slice(min, max);
     }
 
-    nextPage() {
+    numPages() {
+        return Math.ceil(this.data.length / this.numItems);
+    }
 
+    nextPage() {
+        if (this.page < this.numPages() ) this.page += 1;
     }
 
     previousPage() {
-
+        if (this.page > 1) this.page -=1;
     }
 
     goToPage(num) {
@@ -28,8 +32,7 @@ PaginatedList = class {
     }
 
     getButtonData() {
-        let count = this.data.length;
-        let pages = Math.ceil(count / this.numItems);
+        let pages = this.numPages()
         let numArray = [];
         _.times(pages, function(n) {
             if (n < pages) {
