@@ -3,7 +3,6 @@ Template.listExample.onCreated(function() {
     const instance = this;
     const items = generateItems()
 
-    //how do we make this reactive? 
     instance.list = new PaginatedList(items, 10);
 });
 
@@ -15,7 +14,7 @@ Template.listExample.helpers({
         return Template.instance().list.getButtonData();
     },
     isActive: function() {
-        return this === Template.instance().list.getCurrentPage();
+        return this === Template.instance().list.getCurrentPage() ? 'active': '';
     }
 })
 
@@ -28,8 +27,8 @@ Template.listExample.events({
         instance.list.previousPage();
     },
 
-    'click .page-number': function(e, instance) {
-        instance.list.goToPage(e.currentTarget.value);
+    'click .load-page-range': function(e, instance) {
+        instance.list.goToPage(parseInt(e.currentTarget.getAttribute('data-page')));
     }
 })
 

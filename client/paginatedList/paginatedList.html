@@ -4,10 +4,13 @@
     {{/each}}
 
     <div class="btn-group" role="group">
+        <button class="btn btn-default btn-previous">Previous</button>
         {{#each getListButtons}}
-            <button class="btn btn-default {{isActive}}">
-                <a data-loqust="load-page-range" data-page="{{pageNumber}}">{{pageNumber}}</a>
+            <button class="btn btn-default load-page-range {{isActive}}" data-page="{{pageNumber}}">
+                {{pageNumber}} 
             </button>
         {{/each}}
+        <button class="btn btn-default btn-next">Next</button>
+
     </div>
 </template>

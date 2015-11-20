@@ -3,9 +3,12 @@ PaginatedList = class {
         this.data = data;
         this.page = 1
         this.numItems = itemsPerPage;
+
+        this.deps = new Tracker.Dependency;
     }
 
     getData() {
+        this.deps.depend();
         const max = this.page * this.numItems;
         const min = max - this.numItems;
         return this.data.slice(min, max);
@@ -16,18 +19,28 @@ PaginatedList = class {
     }
 
     nextPage() {
-        if (this.page < this.numPages() ) this.page += 1;
+        if (this.page < this.numPages() ) {
+            this.page += 1;
+            this.deps.changed();
+        }
     }
 
     previousPage() {
-        if (this.page > 1) this.page -=1;
+        if (this.page > 1) {
+            this.page -=1;
+            this.deps.changed();
+        }
     }
 
     goToPage(num) {
-
+        if ( num >= 1 && num <= this.numPages()) {
+            this.page = num;
+            this.deps.changed();
+        }
     }
 
     getCurrentPage() {
+        this.deps.changed();
         return this.page;
     }
 
